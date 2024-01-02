@@ -1,0 +1,4 @@
+{
+  "name": "prisma-generate-repro",
+  "packageManager": "yarn@4.0.2"
+}
