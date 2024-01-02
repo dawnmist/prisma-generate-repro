@@ -11,6 +11,5 @@ Running `yarn prisma generate` results in the `.prisma/client` not actually bein
 - edit the `schema.prisma` file, and set the `StripeCustomer.email` field to be `@unique`
 - run `yarn prisma generate`
 - check the `StripeCustomerWhereUniqueInput` type in `node_modules/.prisma/client/index.d.ts`, and note that it still only requires at least one of `id` or `userEmail` - the `email` field should have been added as a result of adding the `@unique` tag, but wasn't.
-- force a yarn reinstall by deleting the `.yarn/install-state.gz` file.
-- run `yarn install` again. Note that it will say `prisma@npm:5.7.1 must be built because it never has been before or the last one failed`.
+- run `yarn rebuild @prisma/client`
 - check the `StripeCustomerWhereUniqueInput` type in `node_modules/.prisma/client/index.d.ts`, and note that it now after reinstalling requires one of `id` or `userEmail` or `email`.
