@@ -1,0 +1,26 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["metrics", "multiSchema", "postgresqlExtensions", "tracing", "views", "relationJoins"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [pg_graphql, pg_stat_statements, pgcrypto, pgjwt, pgsodium, pgtap, plpgsql, uuid_ossp(map: "uuid-ossp")]
+  schemas    = ["app", "auth", "extensions", "realtime", "storage", "stripe"]
+}
+
+model StripeCustomer {
+  id            String   @id
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  customerName  String   @map("customer_name")
+  description   String?
+  delinquent    Boolean  @default(false)
+  email         String
+  invoicePrefix String?  @map("invoice_prefix")
+  userEmail     String   @unique @map("user_email")
+
+  @@map("stripe_customers")
+  @@schema("stripe")
+}

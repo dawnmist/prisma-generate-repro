@@ -1,4 +1,11 @@
 {
   "name": "prisma-generate-repro",
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.0.2",
+  "dependencies": {
+    "@prisma/client": "^5.7.1",
+    "prisma": "^5.7.1"
+  },
+  "prisma": {
+    "schema": "./schema.prisma"
+  }
 }
